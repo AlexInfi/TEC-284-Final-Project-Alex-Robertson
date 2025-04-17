@@ -23,13 +23,12 @@
 
 //Define a structure that holds your variables
 struct ball {
-  String phrases[] = {"For Sure", "Yes", "Definitely!", "Maybe", "Not Sure...", 
-  "Ask Later", "I'm Tired", "No Way!", "No", "Nope"};
-
-  int numPhrases = 10;
-}
+  String phrases[10];
+};
 
 //Assign your 8 Ball answers and info into an array
+struct ball magicBall = {{"For Sure", "Yes", "Definitely!", "Maybe", "Not Sure...", 
+  "Ask Later", "I'm Tired", "No Way!", "No", "Nope"}};
 
 
 U8X8_SSD1306_128X64_NONAME_HW_I2C u8x8(/* reset=*/ U8X8_PIN_NONE); //do not delete
@@ -60,7 +59,6 @@ void setup() {
 
   // Welcome message printed to the serial monitor
   Serial.print("Welcome to the Magic 8 Ball! Shake to begin!");
-
 }
 
 void loop() {
@@ -69,8 +67,9 @@ u8x8.setFont(u8x8_font_chroma48medium8_r); //do not edit or delete
   
 
 if (LIS.getAccelerationZ() > 2) { //If the Grove board is shaken
-   String output = ball.phrases[random(numPhrases)];
-   Serial.print(output);
+
+   String output = magicBall.phrases[random(10)];
+   Serial.println(output);
 } 
 }
 
