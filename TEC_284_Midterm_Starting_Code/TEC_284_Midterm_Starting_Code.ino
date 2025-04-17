@@ -1,5 +1,5 @@
-// Written by:
-// Last Edited: 
+// Written by: Alex Robertson and original author of starter code
+// Last Edited: 04/17/25
 // TEC 284 Magic 8 Ball
 
 //Arduino references can be found at: https://www.arduino.cc/reference/en/
@@ -55,10 +55,11 @@ void setup() {
 
   LIS.begin(WIRE, 0x19); //I2C init -- do not delete
 
-//debug below
   Serial.begin(9600);                                     
   u8x8.begin();
 
+  // Welcome message printed to the serial monitor
+  Serial.print("Welcome to the Magic 8 Ball! Shake to begin!");
 
 }
 
@@ -68,7 +69,8 @@ u8x8.setFont(u8x8_font_chroma48medium8_r); //do not edit or delete
   
 
 if (LIS.getAccelerationZ() > 2) { //If the Grove board is shaken
-   
+   String output = ball.phrases[random(numPhrases)];
+   Serial.print(output);
 } 
 }
 
