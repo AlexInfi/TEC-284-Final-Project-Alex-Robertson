@@ -22,8 +22,11 @@
 #endif
 
 //Define a structure that holds your variables
-struct {
+struct ball {
+  String phrases[] = {"For Sure", "Yes", "Definitely!", "Maybe", "Not Sure...", 
+  "Ask Later", "I'm Tired", "No Way!", "No", "Nope"};
 
+  int numPhrases = 10;
 }
 
 //Assign your 8 Ball answers and info into an array
@@ -53,7 +56,7 @@ void setup() {
   LIS.begin(WIRE, 0x19); //I2C init -- do not delete
 
 //debug below
-  Serial.start(9600);                                     
+  Serial.begin(9600);                                     
   u8x8.begin();
 
 
