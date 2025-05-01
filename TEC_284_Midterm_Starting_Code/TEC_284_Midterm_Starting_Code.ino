@@ -63,16 +63,14 @@ void setup() {
 
 void loop() {
 
-u8x8.setFont(u8x8_font_chroma48medium8_r); //do not edit or delete
+  u8x8.setFont(u8x8_font_chroma48medium8_r); //do not edit or delete
   
 
-if (LIS.getAccelerationZ() > 2) { //If the Grove board is shaken
+  if (LIS.getAccelerationZ() > 2) { //If the Grove board is shaken
 
-   String output = magicBall.phrases[random(10)];
-   Serial.println(output);
-} 
+    String output = magicBall.phrases[random(10)];
+    Serial.println(output); // Print output to Serial Monitor
+    u8x8.print(output); // Print output to OLED
+    delay(5000);  // Delays for 5 seconds
+  } 
 }
-
-
-
-
