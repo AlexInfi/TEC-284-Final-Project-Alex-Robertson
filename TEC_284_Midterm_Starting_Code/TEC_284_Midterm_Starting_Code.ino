@@ -69,7 +69,7 @@ void setup() {
 
 void loop() {
 
-  u8x8.setFont(u8x8_font_chroma48medium8_r); //do not edit or delete
+  u8x8.setFont(u8x8_font_7x14B_1x2_r); //do not edit or delete
   
 
   if (LIS.getAccelerationZ() > 2) { //If the Grove board is shaken
