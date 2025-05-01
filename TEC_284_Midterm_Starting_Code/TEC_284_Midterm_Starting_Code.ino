@@ -58,7 +58,7 @@ void setup() {
   u8x8.begin();
 
   // Welcome message printed to the serial monitor
-  Serial.print("Welcome to the Magic 8 Ball! Shake to begin!");
+  Serial.println("Welcome to the Magic 8 Ball! Shake to begin!");
 }
 
 void loop() {
@@ -67,10 +67,11 @@ void loop() {
   
 
   if (LIS.getAccelerationZ() > 2) { //If the Grove board is shaken
-
+    u8x8.setCursor(0,0);
     String output = magicBall.phrases[random(10)];
     Serial.println(output); // Print output to Serial Monitor
     u8x8.print(output); // Print output to OLED
     delay(5000);  // Delays for 5 seconds
+    u8x8.clearDisplay();
   } 
 }
