@@ -24,11 +24,13 @@
 //Define a structure that holds your variables
 struct ball {
   String phrases[10];
+  String moods[10];
 };
 
 //Assign your 8 Ball answers and info into an array
 struct ball magicBall = {{"For Sure", "Yes", "Definitely!", "Maybe", "Not Sure...", 
-  "Ask Later", "I'm Tired", "No Way!", "No", "Nope"}};
+  "Ask Later", "I'm Tired", "No Way!", "No", "Nope"}, {"Positive", "Positive", "Positive",
+  "Neutral", "Neutral", "Neutral", "Neutral", "Negative", "Negative", "Negative"}};
 
 
 U8X8_SSD1306_128X64_NONAME_HW_I2C u8x8(/* reset=*/ U8X8_PIN_NONE); //do not delete
@@ -49,6 +51,10 @@ U8X8_SSD1306_128X64_NONAME_HW_I2C u8x8(/* reset=*/ U8X8_PIN_NONE); //do not dele
       10          Nope            Negative
     */
 
+int getPhrase() {
+  int phraseNum = random(10);
+  return phraseNum;
+}
 
 void setup() {
 
@@ -68,9 +74,11 @@ void loop() {
 
   if (LIS.getAccelerationZ() > 2) { //If the Grove board is shaken
     u8x8.setCursor(0,0);
-    String output = magicBall.phrases[random(10)];
-    Serial.println(output); // Print output to Serial Monitor
-    u8x8.print(output); // Print output to OLED
+    int phraseNum = getPhrase();
+    String output = magicBall.phrases[phraseNum];
+    Serial.println(output + " - " + magicBall.moods[phraseNum]); // Print output to Serial Monitor
+    u8x8.println(output); // Print output to OLED
+    u8x8.println(magicBall.moods[phraseNum]);
     delay(5000);  // Delays for 5 seconds
     u8x8.clearDisplay();
   } 
